@@ -24,12 +24,14 @@ public class ChocolateDistributionProblem {
 					arr[j] = Integer.parseInt(str[j]);
 				Arrays.sort(arr);
 
+				//qwertyuiop[asdfghjkl
 				int min = Integer.MAX_VALUE;
 				for (int j = 0; j <= n - m; j++) {
 					if ((arr[j + m - 1] - arr[j]) < min) {
 						min = arr[j + m - 1] - arr[j];
 					}
 				}
+				//qwertyuifghjk
 				System.out.println(min);
 			}
 
