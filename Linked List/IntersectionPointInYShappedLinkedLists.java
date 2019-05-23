@@ -138,9 +138,9 @@ class Intersect {
 			t = t.next;
 			t2 = t2.next;
 		}
-		if (t == t2)
-			return t.data;
-		else
+		if (t == null || t2 == null)
 			return -1;
+		else
+			return t.data;
 	}
 }
