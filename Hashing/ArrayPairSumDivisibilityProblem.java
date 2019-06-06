@@ -18,6 +18,33 @@ public class ArrayPairSumDivisibilityProblem {
 					arr[i] = Integer.parseInt(str[i]);
 				int k = Integer.parseInt(br.readLine());
 
+				int rem[] = new int[k];
+				for (int i = 0; i < n; i++)
+					rem[arr[i] % k]++;
+				boolean flag = true;
+				for (int i = 0; i < n; i++) {
+					int r = arr[i] % k;
+					if (k == 2 * r) {
+						if (rem[r] % 2 != 0) {
+							flag = false;
+							break;
+						}
+					} else if (r == 0) {
+						if (rem[r] % 2 != 0) {
+							flag = false;
+							break;
+						}
+					} else {
+						if (rem[k - r] != rem[r]) {
+							flag = false;
+							break;
+						}
+					}
+				}
+				if (flag)
+					System.out.println("True");
+				else
+					System.out.println("False");
 				t--;
 			}
 			br.close();
