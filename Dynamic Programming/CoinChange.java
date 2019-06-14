@@ -18,13 +18,7 @@ public class CoinChange {
 				for (int i = 0; i < m; i++)
 					arr[i] = Integer.parseInt(str[i]);
 
-				int dp[] = new int[n + 1];
-				dp[0] = 1;
-				for (int i = 0; i < m; i++) {
-					for (int j = arr[i]; j <= n; j++)
-						dp[j] = dp[j] + dp[j - arr[i]];
-				}
-				System.out.println(dp[n]);
+				System.out.println(dp2d(arr, m, n));
 				t--;
 			}
 
@@ -33,5 +27,31 @@ public class CoinChange {
 
 			e.printStackTrace();
 		}
+	}
+
+	static int dp1d(int[] arr, int m, int n) {
+
+		int dp[] = new int[n + 1];
+		dp[0] = 1;
+		for (int i = 0; i < m; i++) {
+			for (int j = arr[i]; j <= n; j++)
+				dp[j] = dp[j] + dp[j - arr[i]];
+		}
+		return dp[n];
+	}
+
+	static int dp2d(int[] arr, int m, int n) {
+
+		int dp[][] = new int[m][n + 1];
+		for (int i = 0; i < m; i++)
+			dp[i][0] = 1;
+		for (int i = 0; i < m; i++) {
+			for (int j = 1; j <= n; j++) {
+				int x = (j - arr[i]) >= 0 ? dp[i][j - arr[i]] : 0;
+				int y = i > 0 ? dp[i - 1][j] : 0;
+				dp[i][j] = x + y;
+			}
+		}
+		return dp[m - 1][n];
 	}
 }
